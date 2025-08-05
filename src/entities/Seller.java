@@ -1,13 +1,15 @@
 package entities;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
-public class Seller {
+public class Seller implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name, email;
-	private LocalDateTime birthDate;
+	private Date birthDate;
 	private Double baseSalary;
 
 	private Department department;
@@ -16,8 +18,7 @@ public class Seller {
 	public Seller() {
 	}
 
-	public Seller(Integer id, String name, String email, LocalDateTime birthDate, Double baseSalary,
-			Department department) {
+	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
 
 		this.id = id;
 		this.name = name;
@@ -32,7 +33,7 @@ public class Seller {
 		return name;
 	}
 
-	public LocalDateTime getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
@@ -61,7 +62,7 @@ public class Seller {
 		this.baseSalary = baseSalary;
 	}
 
-	public void setBirthDate(LocalDateTime birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -79,8 +80,14 @@ public class Seller {
 
 	// ------------ METODS
 	@Override
+	public String toString() {
+		return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
+				+ baseSalary + "]";
+	}
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(email);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -92,13 +99,7 @@ public class Seller {
 		if (getClass() != obj.getClass())
 			return false;
 		Seller other = (Seller) obj;
-		return Objects.equals(email, other.email);
-	}
-
-	@Override
-	public String toString() {
-		return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
-				+ baseSalary + "]";
+		return Objects.equals(id, other.id);
 	}
 
 }
