@@ -4,16 +4,18 @@ import java.util.Date;
 
 import entities.Department;
 import entities.Seller;
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		Department obj = new Department(1, "Tecnologia da Informação");
-		System.out.println(obj.toString());
+		SellerDao sellerDao = DaoFactory.createSellerDao();
 
-		Seller seller = new Seller(12, "Irineu", "irineu@gmail.com", new Date(), 2143.99, obj);
-		System.out.println(seller.toString());
+		Seller seller = sellerDao.findById(7);
+
+		System.out.println(seller);
 	}
 
 }
